@@ -1,18 +1,21 @@
-#!/bin/bash -eu
+#!/bin/bash -e
 
+tag_name="study-arm-assembly:latest"
+container_name="study-arm-assembly"
+
+# Command to execute
+# Execute bash when it doesn't be specified
+cmd="${1:-/bin/bash}"
+
+# Use interactive shell when the command doesn't be specified
+opt_it=""
 if [ $# -lt 1 ]; then
-    echo "[Error] tag name does not be specified"
-    echo "usage: run_docker.sh TAG_NAME [CONTAINER_NAME]"
-    exit
+    opt_it="-it"
 fi
 
-tag_name=$1
-
-
-container_name=study-arm-assembly
-
-if [ $# -eq 2 ]; then
-    container_name=$2
+# Build new image if it doen't exist
+if [ "$(docker images ${tag_name} -q)" == "" ]; then
+    docker build . -t ${tag_name}
 fi
 
 docker run -u $(id -u $USER):$(id -g $USER) \
@@ -21,5 +24,4 @@ docker run -u $(id -u $USER):$(id -g $USER) \
     -v $(pwd):/workspace \
     --rm \
     --name ${container_name} \
-    -it ${tag_name} /bin/bash
-
+    ${opt_it} ${tag_name} ${cmd}
