@@ -6,6 +6,7 @@ Study of Arm assembly language
 
 - qemu-arm version 4.2.1
 - gcc-arm-linux-gnueabi 9.4.0/10.5.0
+- Target architecture: Armv8-A (Cortex-A family)
 
 Docker container: `study-arm-assembly` with qemu environment can run by `run_docker.sh`.
 - A base Docker image: `study-arm-assembly:latest` is built if it doesn't exist.
