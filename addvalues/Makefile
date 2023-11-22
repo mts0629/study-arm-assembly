@@ -1,19 +1,22 @@
 PREFIX := arm-linux-gnueabi
 CC = $(PREFIX)-gcc
-CFLAGS = -Wall -Wextra -Wpedantic
+# - Target: Armv8-A
+# - ISA: Arm
+CFLAGS = -Wall -Wextra -Wpedantic -march=armv8-a -marm
 
-TARGETS = addvalues.elf \
-	addvalues_inline.elf
+BUILD_DIR := build
+
+TARGETS = $(BUILD_DIR)/addvalues.elf \
+	$(BUILD_DIR)/addvalues_inline.elf
 
 .PHONY: all clean
 
-all: $(TARGETS)
+all: mkdir $(TARGETS)
 
-# - Target: Armv8-A
-# - ISA: Arm
-addvalues_inline.elf: CFLAGS += -march=armv8-a -marm
+mkdir:
+	@mkdir -p $(BUILD_DIR)
 
-%.elf: %.c
+$(BUILD_DIR)/%.elf: %.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
