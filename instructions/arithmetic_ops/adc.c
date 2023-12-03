@@ -21,7 +21,7 @@ void adc(void) {
         : "r0", "r1", "r2", "r3"
     );
 
-    printf("rd2 = %u\n", d);
+    printf("r2 = %u\n", d);
     printf("flag: n=%u, z=%u, c=%u, v=%u\n", CPSR_FLAGS_N(cpsr), CPSR_FLAGS_Z(cpsr), CPSR_FLAGS_C(cpsr), CPSR_FLAGS_V(cpsr));
 }
 
