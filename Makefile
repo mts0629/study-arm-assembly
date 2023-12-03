@@ -1,6 +1,6 @@
 PREFIX := arm-linux-gnueabi
 CC = $(PREFIX)-gcc
-CFLAGS = -Wall -Wextra -Wpedantic -march=armv8-a -marm
+CFLAGS = -Wall -Wextra -Wpedantic -march=armv8-a -marm -I.
 
 BUILD_DIR := build
 
