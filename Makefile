@@ -7,7 +7,7 @@ BUILD_DIR := build
 SRC = # Specify a source file from commandline
 TARGET = $(BUILD_DIR)/$(basename $(notdir $(SRC))).elf
 
-.PHONY: all mkdir run clean
+.PHONY: all mkdir run asm clean
 
 all: $(TARGET)
 
@@ -16,6 +16,9 @@ mkdir:
 
 $(TARGET): $(SRC) mkdir
 	$(CC) $(CFLAGS) $(SRC) -o $@
+
+asm: $(SRC) mkdir
+	$(CC) $(CFLAGS) -S $(SRC) -o $(TARGET:.elf=.s)
 
 run: $(TARGET)
 	@qemu-arm-static -L /usr/arm-linux-gnueabi $(TARGET)
