@@ -39,10 +39,44 @@ void ldr_post_index(void) {
     printf("d2 = %u\n", d2);
 }
 
+void ldr_barrel_shifter(void) {
+    uint32_t d;
+
+    __asm__(
+        "ldr    r0, =s\n\t"                 // r0 = (address of s)
+        "mov    r1, #1\n\t"                 // r1 = 1
+        "ldr    r2, [r0, r1, lsl #0x2]\n\t" // r2 = *(r0 + (r1 << 2)) = *&s[1] (pre-index)
+        "mov    %[Rd], r2\n\t"
+        : [Rd] "=r" (d)
+        :
+        : "r0", "r1", "r2"
+    );
+
+    printf("d = %u\n", d);
+}
+
+void ldr_immediate(void) {
+    uint32_t d;
+
+    __asm__(
+        "ldr    r0, =100\n\t"   // r0 = 100
+        "mov    %[Rd], r0\n\t"
+        : [Rd] "=r" (d)
+        :
+        : "r0"
+    );
+
+    printf("d = %u\n", d);
+}
+
 int main(void) {
     ldr_pre_index();
 
     ldr_post_index();
+
+    ldr_barrel_shifter();
+
+    ldr_immediate();
 
     return 0;
 }
