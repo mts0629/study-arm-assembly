@@ -9,7 +9,7 @@ void ldmia(void) {
     __asm__(
         "ldr    r0, =s\n\t"         // r0 = (address of s)
         "add    r0, r0, #12\n\t"    // r0 = (address of s[3])
-        "ldmia  r0!, {r1-r3}\n\t"   // r1 = *(r0) = s[3], r0++ (post-increment)
+        "ldmia  r0!, {r1-r3}\n\t"   // r1 = *(r0) = s[3], r0++ (post-increment, write-back)
                                     // r2 = *(r0) = s[4], r0++
                                     // r2 = *(r0) = s[5], r0++
         "mov    %[Rd0], r0\n\t"
@@ -30,7 +30,7 @@ void ldmib(void) {
     __asm__(
         "ldr    r0, =s\n\t"         // r0 = (address of s)
         "add    r0, r0, #12\n\t"    // r0 = (address of s[3])
-        "ldmib  r0!, {r1-r3}\n\t"   // r1 = *(++r0) = s[4] (pre-increment)
+        "ldmib  r0!, {r1-r3}\n\t"   // r1 = *(++r0) = s[4] (pre-increment, write-back)
                                     // r2 = *(++r0) = s[5]
                                     // r2 = *(++r0) = s[6]
         "mov    %[Rd0], r0\n\t"
@@ -51,7 +51,7 @@ void ldmda(void) {
     __asm__(
         "ldr    r0, =s\n\t"         // r0 = (address of s)
         "add    r0, r0, #12\n\t"    // r0 = (address of s[3])
-        "ldmda  r0!, {r1-r3}\n\t"   // r3 = *(r0) = s[3], r0-- (post-decrement)
+        "ldmda  r0!, {r1-r3}\n\t"   // r3 = *(r0) = s[3], r0-- (post-decrement, write-back)
                                     // r2 = *(r0) = s[2], r0--
                                     // r1 = *(r0) = s[1], r0--
         "mov    %[Rd0], r0\n\t"
@@ -72,7 +72,7 @@ void ldmdb(void) {
     __asm__(
         "ldr    r0, =s\n\t"         // r0 = (address of s)
         "add    r0, r0, #12\n\t"    // r0 = (address of s[3])
-        "ldmdb  r0!, {r1-r3}\n\t"   // r3 = *(--r0) = s[2] (pre-decrement)
+        "ldmdb  r0!, {r1-r3}\n\t"   // r3 = *(--r0) = s[2] (pre-decrement, write-back)
                                     // r2 = *(--r0) = s[1]
                                     // r1 = *(--r0) = s[0]
         "mov    %[Rd0], r0\n\t"
