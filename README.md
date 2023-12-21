@@ -51,7 +51,8 @@ addvalues = 3
 
 ## Reference
 
-[「ARMで学ぶ アセンブリ言語入門」](https://www.c-r.com/book/detail/927)
+- [「ARMで学ぶ アセンブリ言語入門」](https://www.c-r.com/book/detail/927) (original sources)
+- [Assembly Programming on ARM Linux](https://www.mztn.org/slasm/arm00.html)
 
 ## License
 
