@@ -5,7 +5,9 @@ CFLAGS = -Wall -Wextra -Wpedantic -march=armv8-a -marm -I.
 BUILD_DIR := build
 
 SRCS := main.c \
-		addvalues.S
+		addvalues.S \
+		add6values.S
+
 OBJS = $(patsubst %, $(BUILD_DIR)/%, $(patsubst %.S, %.o, $(patsubst %.c, %.o, $(SRCS))))
 
 TARGET = $(BUILD_DIR)/prog
