@@ -1,0 +1,4 @@
+    .global word_data
+    .data                                       @ Data section
+word_data:
+    .word 0x01234567, 0x11223344, 0x00000000    @ An array of words

@@ -6,7 +6,8 @@ BUILD_DIR := build
 
 SRCS := main.c \
 		addvalues.S \
-		add6values.S
+		add6values.S \
+		word_data.S
 
 OBJS = $(patsubst %, $(BUILD_DIR)/%, $(patsubst %.S, %.o, $(patsubst %.c, %.o, $(SRCS))))
 
