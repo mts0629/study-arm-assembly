@@ -4,7 +4,17 @@ int addvalues(int a, int b);
 
 int add6values(int a, int b, int c, int d, int e, int f);
 
-extern int word_data[];
+extern int word_data[3];
+
+typedef struct {
+    int val_int;
+    short val_short;
+    char val_char;
+} simple_struct;
+
+extern simple_struct data;
+
+int sum_struct_values(simple_struct* data);
 
 int main(void) {
     int a = 1, b = 2;
@@ -16,6 +26,13 @@ int main(void) {
     for (int i = 0; i < 3; i++) {
         printf("word_data[%d] = 0x%08x\n", i, word_data[i]);
     }
+
+    data.val_int = 10;
+    // data.val_short = 2;
+    // data.val_char = 3;
+
+    int sum_data = sum_struct_values(&data);
+    printf("sum_data = %d\n", sum_data);
 
     return 0;
 }

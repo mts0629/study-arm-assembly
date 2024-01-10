@@ -7,7 +7,8 @@ BUILD_DIR := build
 SRCS := main.c \
 		addvalues.S \
 		add6values.S \
-		word_data.S
+		word_data.S \
+		sum_struct_values.S
 
 OBJS = $(patsubst %, $(BUILD_DIR)/%, $(patsubst %.S, %.o, $(patsubst %.c, %.o, $(SRCS))))
 
