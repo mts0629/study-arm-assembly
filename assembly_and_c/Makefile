@@ -25,6 +25,7 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(BUILD_DIR)/%.o: %.c mkdir
+	$(CC) $(CFLAGS) $< -S
 	$(CC) $(CFLAGS) $< -c -o $@
 
 $(BUILD_DIR)/%.o: %.S mkdir
