@@ -1,6 +1,7 @@
 PREFIX := arm-linux-gnueabi
 CC = $(PREFIX)-gcc
-CFLAGS = -Wall -Wextra -Wpedantic -mcpu=arm926ej-s -marm
+# Build for Arm926EJ-S core
+CFLAGS := -Wall -Wextra -Wpedantic -mcpu=arm926ej-s
 
 BUILD_DIR := build
 
@@ -25,10 +26,14 @@ $(TARGET): $(OBJS)
 $(BUILD_DIR)/%.o: %.c mkdir
 	$(CC) $(CFLAGS) $< -c -o $@
 
+$(BUILD_DIR)/irq_timer.o: CFLAGS += -marm
+
 $(BUILD_DIR)/%.o: %.S mkdir
 	$(CC) $(CFLAGS) $< -c -o $@
 
 run: $(TARGET)
+#	Emulate the executable binary for the VersatilePB platform
+	@export QEMU_AUDIO_DRV=none
 	@qemu-system-arm -M versatilepb -nographic -kernel $(TARGET).bin
 
 clean:

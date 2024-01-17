@@ -56,7 +56,7 @@ void boot_main(void) {
     *TIMER0 = 1000000;
 
     // Config the Timer0
-    *(TIMER0 + TIMER_CONTROL) = 
+    *(TIMER0 + TIMER_CONTROL) =
         (TIMER_EN | TIMER_PERIODIC | TIMER_32BIT | TIMER_INTEN);
 
     // Enable IRQ
