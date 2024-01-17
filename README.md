@@ -5,6 +5,7 @@ Study of Arm assembly language
 ## Environment
 
 - qemu-arm version 4.2.1
+- QEMU emulator version 4.2.1
 - gcc-arm-linux-gnueabi 9.4.0/10.5.0
 - Target architecture: Armv8-A (Cortex-A family)
 

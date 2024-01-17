@@ -5,6 +5,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get upgrade -y && \
 
 RUN apt-get update -y && apt-get install -y \
     qemu-user-static \
+    qemu-system-arm \
     gcc-arm-linux-gnueabi \
     make \
     && rm -rf /var/lib/apt/lists/*
