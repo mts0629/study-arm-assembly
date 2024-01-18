@@ -27,7 +27,7 @@ prefetch_abort_handler_addr:
 data_abort_handler_addr:
     .word   halt
 irq_handler_addr:
-    .word   halt
+    .word   irq_handler
 fiq_handler_addr:
     .word   halt
 vectors_end:

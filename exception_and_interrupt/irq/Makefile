@@ -8,7 +8,7 @@ BUILD_DIR := build
 SRCS := irq_timer.c \
 		vectors.S
 
-OBJS = $(patsubst %, $(BUILD_DIR)/%, $(patsubst %.S, %.o, $(patsubst %.c, %.o, $(SRCS))))
+OBJS = $(patsubst %.S, %.o, $(patsubst %.c, %.o, $(SRCS)))
 
 TARGET = $(BUILD_DIR)/irq_timer
 
@@ -16,19 +16,18 @@ TARGET = $(BUILD_DIR)/irq_timer
 
 all: $(TARGET)
 
-mkdir:
-	@mkdir -p $(BUILD_DIR)
-
 $(TARGET): $(OBJS)
+	@mkdir -p $(BUILD_DIR)
 	$(CC) -T irq_timer.ld -nostdlib -Xlinker --build-id=none $^ -o $@
 	$(PREFIX)-objcopy -O binary $(TARGET) $(TARGET).bin
+	@mv *.o $(BUILD_DIR)
 
-$(BUILD_DIR)/%.o: %.c mkdir
+%.o: %.c
 	$(CC) $(CFLAGS) $< -c -o $@
 
 $(BUILD_DIR)/irq_timer.o: CFLAGS += -marm
 
-$(BUILD_DIR)/%.o: %.S mkdir
+%.o: %.S
 	$(CC) $(CFLAGS) $< -c -o $@
 
 run: $(TARGET)
