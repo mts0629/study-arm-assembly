@@ -3,9 +3,8 @@ SECTIONS
 {
     . = 0x10000;            /* Set a location counter on the address 0x10000 */
     .text : {               /* text section: instructions */
-        /* ./build/vectors.o   /* Put .text section of vectors.o */
-        /* *(.text .rodata)    /* Put .text and .rodata sections of intermediate file */
-        *(.text .rodata)
+        vectors.o           /* Put .text section of vectors.o */
+        *(.text .rodata)    /* Put .text and .rodata sections of intermediate file */
     }
     .data : { *(.data) }    /* data section: static variables with initial values */
                             /* Put .data section of all intermediate files */
