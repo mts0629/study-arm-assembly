@@ -66,7 +66,7 @@ keep_loading:
 
     /* Return to the supervisor mode */
     msr     cpsr, r0
-    /* Jump to a boot_main */
+    /* Jump to a function: boot_main */
     bl      boot_main
     b       .
 

@@ -36,4 +36,4 @@ run: $(TARGET)
 	@qemu-system-arm -M versatilepb -nographic -kernel $(TARGET).bin
 
 clean:
-	$(RM) $(BUILD_DIR)/*
+	$(RM) $(BUILD_DIR)/* *.o
