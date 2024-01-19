@@ -31,6 +31,10 @@ void output_mode(void) {
 
 // SWI handler
 void c_swi_handler(unsigned char swi_no, uint32_t swi_no2) {
+    // Just ignore
+    (void)swi_no;
+    (void)swi_no2;
+
     uart_puts("swi");
     output_mode();
 }

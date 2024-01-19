@@ -70,7 +70,7 @@ keep_loading:
     .global swi_handler
 swi_handler:
     stmfd   sp!, {r0-r12, lr}   /* Evacuate registers */
-    ldr     r1, [r1, #-4]       /* Get a SWI number */
+    ldr     r1, [lr, #-4]       /* Get a SWI number */
     bic     r1, r1, #0xff000000 /* Get a SWI number (lower 24 bits) */
     bl      c_swi_handler       /* Call a C function: c_swi_handler */
     ldmfd   sp!, {r0-r12, pc}   /* Restore registers */

@@ -1,7 +1,8 @@
 PREFIX := arm-linux-gnueabi
 CC = $(PREFIX)-gcc
 # Build for Arm926EJ-S core
-CFLAGS := -Wall -Wextra -Wpedantic -mcpu=arm926ej-s
+# -fstack-protector: add codes which detect the buffer overflow ("stack smash protector")
+CFLAGS := -Wall -Wextra -Wpedantic -mcpu=arm926ej-s -fstack-protector
 
 BUILD_DIR := build
 
@@ -36,4 +37,4 @@ run: $(TARGET)
 	@qemu-system-arm -M versatilepb -nographic -kernel $(TARGET).bin
 
 clean:
-	$(RM) $(BUILD_DIR)/*
+	$(RM) $(BUILD_DIR)/* *.o

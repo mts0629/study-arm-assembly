@@ -9,11 +9,11 @@ SECTIONS
     .data : { *(.data) }
     .bss : { *(.bss) }
     .stack : {
-        . = . + 0x1000;
+        . = . + 0x1000;     /* Stack area on the supervisor mode, 4 KiB */
         . = ALIGN(4);
         stack_top = .;
-        . = . + 0x1000;
+        . = . + 0x1000;     /* Stack area on the user mode, 4 KiB */
         . = ALIGN(4);
-        irq_stack_top = .;
+        user_stack_top = .;
     }
 }
